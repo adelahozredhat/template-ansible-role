@@ -1,2 +1,11 @@
 ---
-# tasks file for template-ansible-role
+- name: Example get information
+  namespace_example.collection_example.get_servers:
+    username: "{{ example_username }}"
+    password: "{{ example_password }}"
+    url: "{{ example_url }}"
+    proxy: "{{ example_proxy }}"
+    techgroups: "{{ example_techgroups }}"
+    environment: "{{ example_environment }}"
+  notify: HandlerRun
+  register: info_servers

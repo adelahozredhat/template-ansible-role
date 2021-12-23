@@ -11,15 +11,10 @@
     - name: '[CONVERGE] Include role'
       block:
         - name: '[CONVERGE] Include role to test'
-          import_role:
+          import_playbook:
             name: "../{{ lookup('env', 'CI_PROJECT_NAME') }}/playbook.yml"
 
       always:
-        - name: '[UNREGISTER] Unsubscribe from satellite'
-          shell: "/root/postinstall/satellite62.sh --action unregister"
-          args:
-            removes: '/tools/scripts/satellite/dummy.txt'
-
         - name: "[UNREGISTER] Delete dummy for idempotence"
           file:
             path: '/tools/scripts/satellite/dummy.txt'
